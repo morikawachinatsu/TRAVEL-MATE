@@ -1,0 +1,75 @@
+// 親要素と小要素の関係をまず考える！、
+// 小要素のblank2は、中央揃えにして、大きさは全体の半分の長さかな〜みたいな感じ！
+
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.loginpageback {
+    background-image: url('loginback.jpg.png');
+    background-size: cover;
+    background-position: center;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-attachment: fixed;
+}
+
+.blank1 {
+    background-color: rgba(247, 230, 230, 0);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 500px; /* 横幅を調整 */
+    margin-top: 50px;
+    position: absolute;
+    top: 10%;
+}
+
+
+.blank2 {
+    max-width: 100%;
+    width: 100%;
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.field input {
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.actions {
+    margin-top: 20px;
+}
+
+.actions input {
+    width: 50%;
+    padding: 10px;
+    background-color: #e9bdb2cf;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actions input:hover {
+    background-color: #e2c9c9;
+}
+
+.blank2 p {
+    margin-top: 15px;
+}

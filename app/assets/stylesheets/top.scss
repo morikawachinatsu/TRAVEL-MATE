@@ -1,0 +1,78 @@
+// Place all the styles related to the top controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+h3 {
+    margin: 10px;
+}
+.second-block {
+    height: 70%;
+    width: 80%;
+    background-color:rgb(247, 247, 247);
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.preflist {
+    text-align: center;
+    padding: 20px;
+}
+
+.region {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.hokkaidoutouhoku, .kantou, .chuubu, .kinki, .tyuugokusikoku, .kyuusyuuokinawa {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 10px auto;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.hokkaidoutouhoku {
+    background-color: #e0f7fa;
+}
+
+.kantou {
+    background-color: #f1f8e9;
+}
+
+.chuubu {
+    background-color: #fff3e0;
+}
+
+.kinki {
+    background-color: #fce4ec;
+}
+
+.tyuugokusikoku {
+    background-color: #ede7f6;
+}
+
+.kyuusyuuokinawa {
+    background-color: #ffebee;
+}
+
+.pref {
+    margin: 7px 14px;
+}
+
+.preflist a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.preflist a:hover {
+    color: #fff;
+    background-color: #eccebe;
+}

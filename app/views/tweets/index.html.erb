@@ -1,0 +1,54 @@
+<%= stylesheet_link_tag 'index', media: 'all' %>
+<div class="toukouwosagasu">
+    <div class="namaekarasagasu">
+        <h3>名前から探す</h3>
+    <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag '検索', class:"button" %>
+    <% end %>
+    </div>
+
+    <div class="tagukarasagasu">
+    <h4>タグから探す</h4>
+    <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+        <% Tag.all.each do |t| %>
+            <li><%= check_box :tag_ids, t.name %><%= t.name %></li>
+    <% end %>
+    <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+        <%= text_field_tag :tag %>
+        <%= submit_tag 'タグを追加', class:"button"%>
+    <% end %>
+    <%= submit_tag '検索', class:"button"%>
+    <% end %>
+    </div>
+</div>
+
+
+<div class="tweets-container">
+<h3>みんなの投稿</h3>
+  <% @tweets.each do |t| %>
+        <p><%= t.name %></P>
+        <% if user_signed_in? %>
+        <% if current_user.already_liked?(t) %>
+            <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
+                <i class="fas fa-heart"></i><%= t.likes.count %>
+            <% end %>
+        <% else %>
+            <%= button_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
+                <i class="far fa-heart"></i><%= t.likes.count %>
+            <% end %>
+        <% end %>
+    <% else %>
+        <i class="far fa-heart"></i><%= t.likes.count %>
+    <% end %>
+    <% if t.photo.attached? %>
+        <%= image_tag t.photo, size: '250x200'%>
+    <% end %>
+        <p><%= t.user.email %></p>
+        <p><%= link_to "詳細へ", tweet_path(t.id) %>
+        <%= link_to "編集する", edit_tweet_path(t.id) %>
+        <%= link_to "削除", tweet_path(t.id), method: :delete %></p>
+    <% end %>
+</div>
+
+

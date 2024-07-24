@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  address: MyString
+  opentime: 2024-06-01 16:30:44
+  endtime: 2024-06-01 16:30:44
+  dayoff: MyString
+  peaktime: MyString
+  access: MyString
+
+two:
+  name: MyString
+  address: MyString
+  opentime: 2024-06-01 16:30:44
+  endtime: 2024-06-01 16:30:44
+  dayoff: MyString
+  peaktime: MyString
+  access: MyString

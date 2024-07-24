@@ -1,0 +1,73 @@
+<h3>投稿詳細</h3>
+<div class="tweet">
+  <p>name<%= @tweet.name %></p>
+  <p>address<%= @tweet.address %></p>
+  <p>opentime<%= l @tweet.opentime %></p>
+  <p>endtime<%= l @tweet.endtime %></p>
+  <p>dayoff<%= @tweet.dayoff %></p>
+  <p>peaktime<%= @tweet.peaktime %></p>
+  <p>access<%= @tweet.access %></p>
+  <p>budget<%= @tweet.budget%></p>
+  <% if user_signed_in? %>
+      <% if current_user.already_liked?(@tweet) %>
+        <%= link_to tweet_like_path(@tweet), method: :delete do %>
+          <i class="fas fa-heart"></i><%= @tweet.likes.count %>
+        <% end %>
+      <% else %>
+        <%= link_to tweet_likes_path(@tweet), method: :post do %>
+          <i class="far fa-heart"></i><%= @tweet.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <i class="far fa-heart"></i><%= @tweet.likes.count %>
+    <% end %>
+  <%= link_to "編集する", edit_tweet_path(@tweet.id) %>
+</div>
+
+
+
+ <% if @tweet.photo.attached? %>
+        <%= image_tag @tweet.photo, size: '250x200'%>
+    <% end %>
+
+<%= link_to "Tweet一覧に戻る", tweets_path %>
+
+<script type="text/javascript">
+  function initMap() {
+    var test ={lat: <%= @tweet.latitude %>, lng: <%= @tweet.longitude %>};
+    var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 15, 
+              center: test
+              });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+    var contentString = '住所：<%= @tweet.address %>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+                  position:test,
+                  map: map,
+                  title: contentString
+                 });
+
+     marker.addListener('click', function() {
+       infowindow.open(map, marker);
+     });
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>
+<style type="text/css">
+  #map { height: 200px;
+         width: 70%;}
+</style>
+
+<div id="map"></div>
+
+
+<% @tweet.tags.each do |tag| %>
+    <span><%= tag.name %></span>
+<% end %>

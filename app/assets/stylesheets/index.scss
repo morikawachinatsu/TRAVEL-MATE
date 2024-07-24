@@ -1,0 +1,93 @@
+body {
+
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.tweets-container {
+  width: 70%;
+  margin: 20px auto;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h3 {
+  margin: 30px auto;
+  text-align: center;
+  font-weight: bold;
+}
+
+.tweet {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-box {
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.time {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toukouwosagasu {
+  width: 70%;
+  margin: 20px auto;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  padding: 20px;
+}
+
+.namaekarasagasu,
+.tagukarasagasu {
+  background-color: #f4e7e7;
+  border-radius: 10px;
+  padding: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 45%;
+}
+
+.button {
+  width: 25%;
+  height: 40px;
+  line-height: 40px;
+  text-decoration: none;
+  background: #d5c5c5;
+  text-align: center;
+  color: #090802;
+  font-size: 16px;
+  font-family: "Zen Old Mincho", serif;
+  margin: 10px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #c5b3b3;
+  color: #000000;
+}
+
+input[type="text"] {
+  height: 20px;
+  width: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  margin: 10px 0;
+}

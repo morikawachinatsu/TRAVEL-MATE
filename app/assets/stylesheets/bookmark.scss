@@ -1,0 +1,172 @@
+.bookmark {
+    text-align: center;
+    list-style: none;
+    background-color: rgb(255, 254, 254);
+    margin: 20px;
+    padding: 5px;
+    border-radius: 8px;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 影をつける */
+}
+.bookmarkpage {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: rgb(240, 227, 227);
+}
+
+#sortable-bookmarks {
+    list-style: none;
+}
+
+.canvas {
+    margin: 35px;
+    background-color: rgb(255, 254, 252);
+    border-radius: 10px;
+    padding: 3%;
+    border: 2px solid #000;
+}
+
+.anatanobookmark {
+    background-color:rgba(255, 255, 255, 0.894);
+    font-size: 20px;
+    text-align: center;
+    height: 60;
+    padding: 9px;
+
+}
+
+.bookmark h2 {
+    text-align: center;
+}
+
+.bookmark ul {
+    list-style-type: none; /* リストのマーカーを削除 */
+    padding: 0;
+}
+
+.bookmark li {
+    margin-bottom: 20px; /* 投稿同士の距離を広げるためのマージン */
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* 各投稿の下にボーダーを追加 */
+}
+
+.bookmark li:last-child {
+    margin-bottom: 0; /* 最後の投稿のマージンをリセット */
+    border-bottom: none; /* 最後の投稿のボーダーを削除 */
+}
+
+.bookmark img {
+    display: block;
+    margin: 10px auto;
+}
+
+.total-budget {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+
+  .buttons {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    background-color: rgb(221, 199, 199);;
+    color: rgb(252, 252, 252);
+    padding: 10px 20px;
+    border:#000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: rgb(5, 5, 5);
+}
+
+
+
+
+
+.canvas-container {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+
+
+.button3 {
+    width:30px;
+    height:30px;
+    text-decoration: none;
+    background:rgb(213, 197, 197);
+    text-align:center;
+    color:#ffffff;
+    border-radius:13px;
+    border:none;
+}
+.button3 :hover{
+    background:rgb(213, 197, 197);
+    color:#000000;
+    margin-left:5px;
+    margin-top:5px;
+    box-shadow:none;
+}
+.button input {
+    width: 10px;
+    height: 30px;
+}
+h7 {
+    margin: 15px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .post-time {
+    flex: 1;
+    text-align: left;
+  }
+  .post-content {
+    flex: 3;
+    text-align: right;
+  }
+  .button2, .button3 {
+    margin-left: 5px;
+  }
+  .total-budget {
+    margin-top: 20px;
+    text-align: right;
+  }
+  .canvas-container {
+    margin-top: 20px;
+  }
+  .canvas {
+    margin-bottom: 10px;
+  }
+  .buttons {
+    margin-top: 10px;
+  }
+
+  input[type="text"] {
+    width: 30%;
+  }

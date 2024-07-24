@@ -1,0 +1,178 @@
+<%= stylesheet_link_tag 'bookmark', :media => "all" %>
+<div class="anatanobookmark">
+  <p><%= link_to @user.name, edit_user_registration_path %> さんだけの旅のしおり</p>
+</div>
+
+
+<div class="bookmarkpage">
+  <div class="bookmark">
+    <h2>Plan</h2>
+    <ul id="sortable-bookmarks">
+      <% @user.liked_tweets.each do |t| %>
+        <li data-id="<%= t.id %>">
+          <input type="text" class="custom-time" data-tweet-id="<%= t.id %>" value="<%= t.likes.find_by(user: @user).try(:custom_time) %>">
+        <%= link_to t.name, tweet_path(t.id) %>
+        <% if t.photo.attached? %>
+          <%= image_tag t.photo, size: '250x200' %>
+        <% end %>
+      </li>
+    <% end %>
+  </div>
+  
+<div class="canvas-container">
+    <h2>map</h2>
+    <div class="canvas">
+      <canvas id="canvas" width="400" height="400" style="border:1px solid #000;"></canvas>
+    </div>
+    <div class="buttons">
+      <button id="saveCanvas">Save</button>
+      <button id="undo">Undo</button>
+      <button id="clearCanvas">Clear</button>
+    </div>
+
+    <%= form_with model: @user, url: update_canvas_user_path(@user), method: :patch, id: 'canvasForm', local: true do |f| %>
+      <%= f.hidden_field :canvasdata, id: 'canvasdata' %>
+    <% end %>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+
+<script>
+  document.addEventListener('turbolinks:load', () => {
+    const el = document.getElementById('sortable-bookmarks');
+    if (el) {
+      new Sortable(el, {
+        animation: 150,
+        onEnd: function (/**Event*/evt) {
+          let order = [];
+          document.querySelectorAll('#sortable-bookmarks li').forEach((item, index) => {
+            order.push({
+              id: item.dataset.id,
+              position: index + 1
+            });
+          });
+
+          fetch('/users/update_bookmarks_order', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ order: order })
+          });
+        },
+      });
+    }
+  });
+</script>
+
+
+<script>
+document.addEventListener("turbolinks:load", function() {
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    var drawing = false;
+    var history = [];
+    var historyStep = -1;
+
+    // Load existing canvas data if available
+    var canvasData = "<%= raw @user.canvasdata %>";
+    if (canvasData) {
+        var img = new Image();
+        img.src = canvasData;
+        img.onload = function() {
+            ctx.drawImage(img, 0, 0);
+            saveState();  // Save initial state
+        };
+    }
+
+    function saveState() {
+        historyStep++;
+        if (historyStep < history.length) history.length = historyStep; // Truncate history if necessary
+        history.push(canvas.toDataURL());
+    }
+
+    function undo() {
+        if (historyStep > 0) {
+            historyStep--;
+            var imgData = history[historyStep];
+            var img = new Image();
+            img.src = imgData;
+            img.onload = function() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+            };
+        }
+    }
+
+    canvas.addEventListener('mousedown', function(e) {
+        drawing = true;
+        ctx.beginPath();
+        ctx.moveTo(e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener('mousemove', function(e) {
+        if (drawing) {
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+        }
+    });
+
+    canvas.addEventListener('mouseup', function() {
+        drawing = false;
+        saveState();  // Save state when drawing ends
+    });
+
+    canvas.addEventListener('mouseout', function() {
+        drawing = false;
+    });
+
+    document.getElementById('saveCanvas').addEventListener('click', function() {
+        var dataURL = canvas.toDataURL();
+        document.getElementById('canvasdata').value = dataURL;
+        document.getElementById('canvasForm').submit();
+    });
+
+    document.getElementById('undo').addEventListener('click', undo);
+    document.getElementById('clearCanvas').addEventListener('click', function() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Optionally, you can also save the cleared state to the database
+      document.getElementById('canvas_data').value = '';
+      document.getElementById('canvasForm').submit();
+    })
+
+    // Save initial state if no existing data
+    if (!canvasData) {
+        saveState();
+    }
+
+// Handle arrival time changes
+    document.querySelectorAll('.custom-time').forEach(function(input) {
+      input.addEventListener('change', function() {
+        var tweetId = this.dataset.tweetId;
+        var customTime = this.value;
+        fetch(`/tweets/${tweetId}/set_custom_time`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          },
+          body: JSON.stringify({ custom_time: customTime })
+        });
+      });
+    });
+
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
