@@ -22,3 +22,15 @@
     margin-top:5px;
     box-shadow:none;
 }
+.stamp-btn {
+    padding: 10px 20px;
+    background-color: #f4d063;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .stamp-btn:disabled {
+    background-color: #ccc; /* グレーアウト */
+    cursor: not-allowed;
+  }

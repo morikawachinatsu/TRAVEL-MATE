@@ -20,6 +20,7 @@ h3 {
   margin: 30px auto;
   text-align: center;
   font-weight: bold;
+
 }
 
 .tweet {
@@ -90,4 +91,19 @@ input[type="text"] {
   border: 1px solid #ccc;
   font-size: 14px;
   margin: 10px 0;
+}
+.calendar table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendar th, .calendar td {
+  border: 1px solid #060606;
+  padding: 10px;
+  text-align: center;
+}
+
+.calendar td {
+  height: 100px;
+  vertical-align: top;
 }

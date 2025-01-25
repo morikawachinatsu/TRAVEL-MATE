@@ -37,6 +37,34 @@ class UsersController < ApplicationController
             end
         end
 
+        def stamp
+            @user = User.find(params[:id]) 
+        
+            
+              @user.increment!(:stamps)
+              
+              new_level = (@user.stamps - 1) / 10 + 1
+            @user.update!(level: new_level)
+            
+        
+            redirect_to  user_path(current_user.id)
+          end
+       
+
+          def remove_stamp
+            @user = User.find(params[:id])
+            
+            if @user.stamps > 0
+              @user.decrement!(:stamps) # スタンプを1つ減らす
+              new_level = (@user.stamps - 1) / 10 + 1
+              @user.update!(level: new_level) # レベルを再計算
+            else
+              flash[:alert] = "これ以上スタンプを戻せません。"
+            end
+          
+            redirect_to user_path(current_user.id)
+          end
+
     private
     def canvas_params
         params.require(:user).permit(:canvasdata)

@@ -6,7 +6,33 @@
 <p>メールアドレス : <%= @user.email %></p>
 <p>プロフィール : <%= @user.profile %></p>
 
-<% if current_user.id == @user.id %>
+
+
+
+</div>
+<p>スタンプ数: <%= @user.stamps %></p>
+<p>レベル: <%= @user.level %></p>
+<% if @user.stamps.nil? %>
+  <%= image_tag "level_1/stamp_card_nil.png", alt: "スタンプカード", width: 400 %>
+<% else %>
+  <%= image_tag "level_#{@user.level}/stamp_card_#{@user.stamps % 10}.png", 
+  alt: "スタンプカード", width: 400 %>
+
+<% end %>
+
+  
+
+ <% if @user.stamps.nil? || @user.stamps < 10 %>
+  <%= button_to 'スタンプを押す', stamp_user_path(@user.id), method: :post, class: 'stamp-btn' %>
+  
+</div>
+<% else %>
+  <button class="stamp-btn" disabled>スタンプを押す</button>
+<% end %>
+<%= button_to 'スタンプを戻す', remove_stamp_user_path(@user.id), method: :post, class: 'remove-stamp-btn' %>
+
+
+ <% if current_user.id == @user.id %>
   <%= link_to "編集する", edit_user_registration_path %>
 <% end %>
 
@@ -14,6 +40,3 @@
 <p><% @user.tweets.each do |t| %></p>
   <%= t.name %>
 <% end %>
-
-
-</div>

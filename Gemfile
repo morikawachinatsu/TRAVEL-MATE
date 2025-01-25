@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.7'
+ruby '3.2.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7'
@@ -44,7 +44,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver', '>= 4.0.0.rc1'
+
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
@@ -56,3 +56,7 @@ gem 'dotenv-rails'
 gem 'cloudinary'
 gem 'activestorage-cloudinary-service'
 gem "geocoder"
+gem 'simple_calendar', '~> 2.0'
+gem 'acts-as-taggable-on', '~> 7.0'
+gem 'rspotify'
+gem 'rinku'

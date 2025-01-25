@@ -1,0 +1,16 @@
+.calendar table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar th, .calendar td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .calendar td {
+    height: 100px;
+    vertical-align: top;
+  }
+  

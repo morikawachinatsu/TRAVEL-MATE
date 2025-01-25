@@ -1,0 +1,11 @@
+
+<% @songs.each do |t| %>
+    
+    <div class="tweet">
+      <%= t.body %>
+     
+    </div>
+
+    <%= Rinku.auto_link(t.apple, :all, 'target="_blank"').html_safe %>
+    
+ <% end %>

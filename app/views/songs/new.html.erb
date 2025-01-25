@@ -1,0 +1,11 @@
+<%= form_for @song do |f| %> 
+<div class="field">
+<%= f.label :body %>
+    <%= f.text_field :body, :size => 140 %>
+
+    <%= f.label :AppleMusic埋め込みリンク %>
+    <%= f.text_field :apple, :size => 140 %>
+    </div>
+
+  <%= f.submit "送信する" %>
+<% end %>

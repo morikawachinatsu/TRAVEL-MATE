@@ -3,7 +3,7 @@ class Tweet < ApplicationRecord
     
     has_many :likes, dependent: :destroy
     has_many :liked_users, through: :likes, source: :user
-    has_one_attached :photo 
+    has_one_attached :photo
 
     geocoded_by :address
     after_validation :geocode, if: :address_changed?

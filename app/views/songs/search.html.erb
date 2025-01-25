@@ -1,0 +1,40 @@
+<h3>アーティスト名で検索</h3>
+<%= form_with url: search_songs_path, method: :get, local: true do |form| %>
+  <%= form.text_field :search_artist %>
+  <%= form.submit 'アーティスト名検索', name: nil %>
+<% end %>
+
+<h3>楽曲名で検索</h3>
+<%= form_with url: search_songs_path, method: :get, local: true do |form| %>
+  <%= form.text_field :search_track %>
+  <%= form.submit '楽曲名検索', name: nil %>
+<% end %>
+
+<h1>検索結果</h1>
+<div>
+  <% if @searchartists.present? %>
+    <% @searchartists.each do |artist| %>
+      <div>
+        <h3><%= link_to artist.name, artist_song_path(artist.id) %></h3>
+        <% if artist.images.any? %>
+          <%= image_tag(artist.images[0]["url"]) %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if @searchtracks.present? %>
+    <% @searchtracks.each do |track| %>
+      <div>
+        <h3><%= link_to track.name, song_path(track.id) %></h3>
+        <p>アーティスト: <%= track.artists.map { |artist| link_to(artist.name, artist_song_path(artist.id)) }.join(", ").html_safe %></p>
+
+
+        <p>アルバム: <%= link_to track.album.name, album_song_path(track.album.id) %></p>
+        <% if track.album.images.any? %>
+          <%= image_tag(track.album.images[0]["url"]) %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

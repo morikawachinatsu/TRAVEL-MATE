@@ -1,0 +1,13 @@
+<h1><%= @artist.name %></h1>
+<p>人気度: <%= @artist.popularity %></p>
+<p>ジャンル: <%= @artist.genres.join(", ") %></p>
+
+<h2>アルバム</h2>
+<% @artist.albums.each do |album| %>
+  <div>
+    <h3><%= link_to album.name, album_song_path(album.id) %></h3>
+    <% if album.images.any? %>
+      <%= image_tag(album.images[0]["url"]) %>
+    <% end %>
+  </div>
+<% end %>

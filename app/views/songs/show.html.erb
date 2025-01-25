@@ -1,0 +1,15 @@
+<h1><%= @track.name %></h1>
+<p>アーティスト: <%= link_to @track.artists.first.name, artist_song_path(@track.artists.first.id) %></p>
+<p>アルバム: <%= link_to @track.album.name, album_song_path(@track.album.id) %></p>
+<p>リリース日: <%= @track.album.release_date %></p>
+<p>トラック番号: <%= @track.track_number %></p>
+<p>長さ: <%= @track.duration_ms / 1000 %> 秒</p>
+
+<% if @track.preview_url.present? %>
+  <audio controls>
+    <source src="<%= @track.preview_url %>" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+<% else %>
+  <p>プレビューは利用できません。</p>
+<% end %>

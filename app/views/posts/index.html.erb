@@ -1,0 +1,7 @@
+<%= stylesheet_link_tag 'calender', :media =>"all"%>
+<%= month_calendar(attribute: :start_time, start_attribute: :start_time, end_attribute: :end_time, events: @events) do |date, events| %>
+  <%= link_to date, new_post_path(date: date) %> <!-- 日付をリンクにしてパラメータを渡す -->
+  <% events.each do |event| %>
+    <p><%= link_to event.title, event %></p>
+  <% end %>
+<% end %>

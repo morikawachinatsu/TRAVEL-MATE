@@ -1,0 +1,22 @@
+<h1><%= @album.name %></h1>
+<p>リリース日: <%= @album.release_date %></p>
+
+<% if @album.images.any? %>
+  <%= image_tag(@album.images[0]["url"]) %>
+<% end %>
+
+<h2>トラックリスト</h2>
+<% @album.tracks.each do |track| %>
+  <div>
+    <h3><%= link_to track.name, song_path(track.id) %></h3>
+    <p>トラックナンバー: <%= track.track_number %></p>
+    <% if track.preview_url.present? %>
+      <audio controls>
+        <source src="<%= track.preview_url %>" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    <% else %>
+      <p>プレビューは利用できません。</p>
+    <% end %>
+  </div>
+<% end %>

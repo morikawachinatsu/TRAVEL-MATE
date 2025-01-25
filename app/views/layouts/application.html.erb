@@ -24,6 +24,7 @@
   <li><%= link_to "投稿", new_tweet_path %></li>
   <li><%= link_to "検索", top_tweets_path %></li>
   <li><%= link_to "旅のしおり", bookmark_user_path(current_user.id) %></li>
+  <%= link_to "マイページへ", user_path(current_user.id) %>
   <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
 
     <% else %>
@@ -32,7 +33,11 @@
     <% end %>
    </ul>
   </div>
+  
  </header>
+ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 100" width="100%">
+  <path d="M 0 50 Q 128 150 256 50 Q 384 150 512 50 Q 640 150 768 50 Q 896 150 1024 50 Q 1152 150 1280 50 L 1280 0 L 0 0 Z" fill="#59afff"></path>
+</svg>
  <main>
   <%= yield %>
  </main>
